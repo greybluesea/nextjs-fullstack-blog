@@ -22,7 +22,7 @@ export default function RootLayout({
         }
       >
         {children}
-        <ul className="hide lg:show mt-auto mb-10 mx-auto flex flex-col justify-center items-center text-slate-400">
+        <ul className="hidden md:flex mt-auto mb-10 mx-auto  flex-col justify-center items-center text-slate-400">
           <li>NEXT.js RESTful API + server actions + SSG</li>
           <li>Prisma + MongaDB</li>
           <li>Tailwind</li>
