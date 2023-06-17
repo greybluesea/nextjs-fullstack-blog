@@ -15,7 +15,23 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body
+        className={
+          inter.className +
+          " w-full min-h-screen flex flex-col justify-between "
+        }
+      >
+        {children}
+        <ul className="hide lg:show mt-auto mb-10 mx-auto flex flex-col justify-center items-center text-slate-400">
+          <li>NEXT.js RESTful API + server actions + SSG</li>
+          <li>Prisma + MongaDB</li>
+          <li>Tailwind</li>
+          <li className="mx-auto">
+            learned from Nikhil (IndianCoders),
+            <span className=" whitespace-nowrap "> powered by greybluesea</span>
+          </li>
+        </ul>
+      </body>
     </html>
   );
 }
