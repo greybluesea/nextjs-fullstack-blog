@@ -7,3 +7,9 @@
     @apply bg-slate-800;
   }
 }
+
+@layer components {
+  .btn-or-link {
+    @apply border border-slate-600 text-slate-700 bg-slate-300 px-2 py-1 rounded-md hover:text-slate-400 focus-within:text-slate-400 outline-none font-semibold;
+  }
+}

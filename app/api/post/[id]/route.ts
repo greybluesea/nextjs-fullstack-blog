@@ -4,7 +4,7 @@ import { prisma } from "@/prisma/singleton";
 
 export const GET = async (req: Request) => {
   try {
-    const id = req.url.split("blog/")[1];
+    const id = req.url.split("post/")[1];
     await main();
     const post = await prisma.post.findFirst({ where: { id } });
     /* const post = getPost(id); */
@@ -28,7 +28,7 @@ export const GET = async (req: Request) => {
 export const PUT = async (req: Request) => {
   try {
     const { title, description } = await req.json();
-    const id = req.url.split("blog/")[1];
+    const id = req.url.split("post/")[1];
     await main();
     const newPost = await prisma.post.update({
       data: { title, description },
@@ -50,7 +50,7 @@ export const PUT = async (req: Request) => {
 
 export const DELETE = async (req: Request) => {
   try {
-    const id = req.url.split("blog/")[1];
+    const id = req.url.split("post/")[1];
     await main();
     const deletedPost = await prisma.post.delete({ where: { id } });
     /*   deletePost(id); */
