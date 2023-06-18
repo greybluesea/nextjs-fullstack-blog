@@ -50,7 +50,8 @@ const AddPostPage = () => {
         <li>This page is a server component, using server actions.</li>
         <li>
           After submission and re-directed to Homepage automatically, a few
-          seconds' wait and reloading of page may be needed to see the new post.
+          seconds' wait and <span className="text-slate-200">RELOAD</span> of
+          page may be needed to see the new post.
         </li>
       </ul>
     </>

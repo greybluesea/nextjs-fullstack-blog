@@ -1,9 +1,8 @@
 "use client";
 
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useRef } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { useRouter } from "next/navigation";
 
 async function fetchPost(id: string) {
   const res = await fetch(`http://localhost:3000/api/post/${id}`);
@@ -19,7 +18,12 @@ async function updatePost(post: Partial<Post>) {
       date: new Date(),
     }),
   });
-  /*  redirect("/"); */
+}
+
+async function deletePost(id: string) {
+  await fetch(`http://localhost:3000/api/post/${id}`, {
+    method: "DELETE",
+  });
 }
 
 const EditPostPage = ({ params: { id } }: { params: { id: string } }) => {
@@ -28,6 +32,7 @@ const EditPostPage = ({ params: { id } }: { params: { id: string } }) => {
   const refDescription = useRef<HTMLTextAreaElement | null>(null);
 
   useEffect(() => {
+    toast.loading("fetching post details", { id: "1" });
     fetchPost(id)
       .then((postData) => {
         const post: Post = postData;
@@ -35,13 +40,14 @@ const EditPostPage = ({ params: { id } }: { params: { id: string } }) => {
           refTitle.current.value = post.title;
           refDescription.current.value = post.description;
         }
+        toast.success("post details fetched", { id: "1" });
       })
       .catch((err) => console.log(err));
   }, []);
 
   /* const post: Post = await fetchPost(id); */
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
     /* toast.loading("Updating Post ", { id: "1" }); */
     toast.promise(
@@ -60,12 +66,24 @@ const EditPostPage = ({ params: { id } }: { params: { id: string } }) => {
 
     setTimeout(() => {
       router.push("/");
-    }, 7000);
+    }, 6500);
+  };
+
+  const handleDelete = async (e: React.FormEvent) => {
+    e.preventDefault();
+    toast.promise(deletePost(id), {
+      loading: "Deleting Post",
+      success: <b>Post Deleted</b>,
+      error: <b>Could not Delete.</b>,
+    });
+    setTimeout(() => {
+      router.push("/");
+    }, 6500);
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="flex gap-3 flex-col  ">
+      <form className="flex gap-3 flex-col  ">
         <Toaster />
         <h2 className="text-slate-300 font-semibold text-lg text-center">
           Edit Post
@@ -89,8 +107,17 @@ const EditPostPage = ({ params: { id } }: { params: { id: string } }) => {
           className="h-40 placeholder-slate-500  border bg-slate-300 rounded px-2 py-1 outline-slate-300 focus-within:border-slate-100 focus-within:ring-offset-5"
         />
         <div className="ml-auto space-x-10">
-          <button className="btn-or-link w-24 bg-red-500/80 ">Delete</button>
-          <button className="btn-or-link w-24 " type="submit">
+          <button
+            onClick={handleDelete}
+            className="btn-or-link w-24 bg-red-500/80 "
+          >
+            Delete
+          </button>
+          <button
+            onClick={handleUpdate}
+            className="btn-or-link w-24  active:disabled "
+            type="submit"
+          >
             Update
           </button>
         </div>
@@ -100,7 +127,8 @@ const EditPostPage = ({ params: { id } }: { params: { id: string } }) => {
         <li>This page is a client component, to utilise Rest API.</li>
         <li>
           After submission and re-directed to Homepage automatically, a few
-          seconds' wait and RELOAD of page is needed to see the new post.
+          seconds' wait and <span className="text-slate-200">RELOAD</span> of
+          page is needed to see the new post.
         </li>
       </ul>
     </>

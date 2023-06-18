@@ -12,9 +12,7 @@ const Post = ({ post }: Props) => {
         id="title-and-action"
         className="flex justify-between items-center my-2 gap-8"
       >
-        <h2 className="mr-auto font-semibold text-xl overflow-hidden whitespace-nowrap">
-          {post.title}
-        </h2>
+        <h2 className="mr-auto font-semibold text-xl truncate">{post.title}</h2>
         <Link
           href={`/post/edit/${post.id}`}
           className="btn-or-link whitespace-nowrap"
