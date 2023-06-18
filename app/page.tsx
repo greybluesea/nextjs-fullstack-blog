@@ -4,7 +4,7 @@ import Post from "./components/Post";
 
 async function fetchPosts() {
   const res = await fetch("http://localhost:3000/api/post", {
-    next: { revalidate: 10 },
+    next: { revalidate: 60 },
   });
 
   const data = await res.json();

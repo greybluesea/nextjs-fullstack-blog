@@ -25,10 +25,17 @@ export const GET = async (req: Request) => {
   }
 };
 
-export const PUT = async (req: Request) => {
+export const PUT = async (
+  req: Request,
+  {
+    params: { id },
+  }: {
+    params: { id: string };
+  }
+) => {
   try {
     const { title, description } = await req.json();
-    const id = req.url.split("post/")[1];
+
     await main();
     const newPost = await prisma.post.update({
       data: { title, description },
