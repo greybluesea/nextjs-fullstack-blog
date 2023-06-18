@@ -27,7 +27,9 @@ const AddPostPage = () => {
     <>
       <form action={addNew} className="flex gap-3 flex-col  ">
         {/*  <label>Title</label> */}
-        <h2 className="text-slate-300 font-semibold text-lg">Add A New Post</h2>
+        <h2 className="text-slate-300 font-semibold text-lg text-center">
+          Add A New Post
+        </h2>
         <input
           type="text"
           placeholder="Enter Title"
