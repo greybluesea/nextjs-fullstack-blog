@@ -47,10 +47,14 @@ const AddPostPage = () => {
       </form>
       <ul className="flex mt-4  flex-col  text-slate-400">
         <li>Note:</li>
-        <li>This page is a server component, using server actions.</li>
+        <li>
+          This page is a{" "}
+          <span className="text-slate-200">server component</span>, using server
+          actions.
+        </li>
         <li>
           After submission and re-directed to Homepage automatically, a few
-          seconds' wait and <span className="text-slate-200">RELOAD</span> of
+          seconds' wait and <span className="text-slate-200">reload</span> of
           page may be needed to see the new post.
         </li>
       </ul>

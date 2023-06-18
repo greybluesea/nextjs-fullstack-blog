@@ -124,10 +124,14 @@ const EditPostPage = ({ params: { id } }: { params: { id: string } }) => {
       </form>
       <ul className="flex mt-4  flex-col  text-slate-400">
         <li>Note:</li>
-        <li>This page is a client component, to utilise Rest API.</li>
+        <li>
+          This page is a{" "}
+          <span className="text-slate-200">client component</span>, to utilise
+          Rest API.
+        </li>
         <li>
           After submission and re-directed to Homepage automatically, a few
-          seconds' wait and <span className="text-slate-200">RELOAD</span> of
+          seconds' wait and <span className="text-slate-200">reload</span> of
           page is needed to see the new post.
         </li>
       </ul>
