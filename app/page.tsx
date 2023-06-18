@@ -3,11 +3,9 @@ import Link from "next/link";
 import Post from "./components/Post";
 
 async function fetchPosts() {
-  const res = await fetch(
-    "http://localhost:3000/api/post" /* , {
+  const res = await fetch("http://localhost:3000/api/post", {
     next: { revalidate: 10 },
-  } */
-  );
+  });
 
   const data = await res.json();
 
@@ -36,7 +34,7 @@ export default async function Home() {
       </section>
       <section
         id="posts"
-        className="w-full felx flex-col justify-center items-center"
+        className="w-full felx flex-col justify-center items-center mb-6"
       >
         {posts.map((post: Post) => (
           <Post key={post.id} post={post} />
