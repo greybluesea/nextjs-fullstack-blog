@@ -32,17 +32,24 @@ const EditPostPage = ({ params: { id } }: { params: { id: string } }) => {
   const refDescription = useRef<HTMLTextAreaElement | null>(null);
 
   useEffect(() => {
-    toast.loading("fetching post details", { id: "1" });
-    fetchPost(id)
-      .then((postData) => {
-        const post: Post = postData;
-        if (refTitle.current && refDescription.current) {
-          refTitle.current.value = post.title;
-          refDescription.current.value = post.description;
-        }
-        toast.success("post details fetched", { id: "1" });
-      })
-      .catch((err) => console.log(err));
+    /* toast.loading("fetching post details", { id: "1" }); */
+    toast.promise(
+      fetchPost(id)
+        .then((postData) => {
+          const post: Post = postData;
+          if (refTitle.current && refDescription.current) {
+            refTitle.current.value = post.title;
+            refDescription.current.value = post.description;
+          }
+          /*  toast.success("post details fetched", { id: "1" }); */
+        })
+        .catch((err) => console.log(err)),
+      {
+        loading: "Fetching post details",
+        success: <b>Post details fetched</b>,
+        error: <b>Could not fetch.</b>,
+      }
+    );
   }, []);
 
   /* const post: Post = await fetchPost(id); */
@@ -66,7 +73,7 @@ const EditPostPage = ({ params: { id } }: { params: { id: string } }) => {
 
     setTimeout(() => {
       router.push("/");
-    }, 6500);
+    }, 6000);
   };
 
   const handleDelete = async (e: React.FormEvent) => {
@@ -78,7 +85,7 @@ const EditPostPage = ({ params: { id } }: { params: { id: string } }) => {
     });
     setTimeout(() => {
       router.push("/");
-    }, 6500);
+    }, 6000);
   };
 
   return (
