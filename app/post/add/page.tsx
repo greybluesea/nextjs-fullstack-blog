@@ -22,7 +22,7 @@ async function addNew(data: FormData) {
   }
 }
 
-const AddPost = () => {
+const AddPostPage = () => {
   return (
     <>
       <form action={addNew} className="flex gap-3 flex-col  ">
@@ -48,14 +48,13 @@ const AddPost = () => {
       <ul className="flex mt-4  flex-col  text-slate-400">
         <li>Note:</li>
         <li>This page is a server component, using server actions.</li>
-        <li>After submission and re-directed to Homepage automatically,</li>
         <li>
-          a few seconds' wait and reloading of page is needed to see the new
-          post.
+          After submission and re-directed to Homepage automatically, a few
+          seconds' wait and reloading of page may be needed to see the new post.
         </li>
       </ul>
     </>
   );
 };
 
-export default AddPost;
+export default AddPostPage;
