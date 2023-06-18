@@ -16,14 +16,6 @@ export default async function Home() {
   const posts: Post[] = await fetchPosts();
   return (
     <main className="w-full   ">
-      <section
-        id="title"
-        className="w-3/4 md:w-2/4 m-auto max-w-xl p-4 my-5 mt-10 rounded-lg drop-shadow-lg bg-slate-700"
-      >
-        <h1 className="text-slate-200 text-center text-2xl font-extrabold font-[verdana] ">
-          NEXT.js FullStack Blog
-        </h1>
-      </section>
       <section id="addPostBtn" className="flex w-3/4 max-w-4xl m-auto">
         <Link
           href={"/post/add"}
