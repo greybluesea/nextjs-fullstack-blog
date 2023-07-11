@@ -1,30 +1,39 @@
 "use client";
 
+import { Post } from "@prisma/client";
 import { revalidateTag } from "next/cache";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
 async function fetchPost(id: string) {
-  const res = await fetch(`http://localhost:3000/api/post/${id}`);
+  const res = await fetch(
+    `https://nextjs-fullstack-blog-greybluesea.vercel.app/api/post/${id}`
+  );
   const data = await res.json();
   return data.post;
 }
 
 async function updatePost(post: Partial<Post>) {
-  await fetch(`http://localhost:3000/api/post/${post.id}`, {
-    method: "PUT",
-    body: JSON.stringify({
-      ...post,
-      date: new Date(),
-    }),
-  });
+  await fetch(
+    `https://nextjs-fullstack-blog-greybluesea.vercel.app/api/post/${post.id}`,
+    {
+      method: "PUT",
+      body: JSON.stringify({
+        ...post,
+        date: new Date(),
+      }),
+    }
+  );
 }
 
 async function deletePost(id: string) {
-  await fetch(`http://localhost:3000/api/post/${id}`, {
-    method: "DELETE",
-  });
+  await fetch(
+    `https://nextjs-fullstack-blog-greybluesea.vercel.app/api/post/${id}`,
+    {
+      method: "DELETE",
+    }
+  );
 }
 
 const EditPostPage = ({ params: { id } }: { params: { id: string } }) => {
