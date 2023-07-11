@@ -1,5 +1,6 @@
 "use client";
 
+import { revalidateTag } from "next/cache";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef } from "react";
 import toast, { Toaster } from "react-hot-toast";
@@ -48,9 +49,10 @@ const EditPostPage = ({ params: { id } }: { params: { id: string } }) => {
         loading: "Fetching post details",
         success: <b>Post details fetched</b>,
         error: <b>Could not fetch.</b>,
-      }
+      },
+      { id: "1" }
     );
-  }, []);
+  }, [id]);
 
   /* const post: Post = await fetchPost(id); */
 
@@ -67,28 +69,33 @@ const EditPostPage = ({ params: { id } }: { params: { id: string } }) => {
         loading: "Updating Post",
         success: <b>Post Updated</b>,
         error: <b>Could not update.</b>,
-      }
+      },
+      { id: "1" }
     );
     /* toast.success("Post Updated ", { id: "1" }); */
 
     setTimeout(() => {
       router.push("/");
       router.refresh();
-    }, 5000);
+    }, 4000);
   };
 
   const handleDelete = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.promise(deletePost(id), {
-      loading: "Deleting Post",
-      success: <b>Post Deleted</b>,
-      error: <b>Could not Delete.</b>,
-    });
+    toast.promise(
+      deletePost(id),
+      {
+        loading: "Deleting Post",
+        success: <b>Post Deleted</b>,
+        error: <b>Could not Delete.</b>,
+      },
+      { id: "1" }
+    );
 
     setTimeout(() => {
       router.push("/");
       router.refresh();
-    }, 5000);
+    }, 4000);
   };
 
   return (

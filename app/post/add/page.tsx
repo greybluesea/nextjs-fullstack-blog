@@ -2,6 +2,7 @@ import React from "react";
 import { redirect } from "next/navigation";
 import { prisma } from "@/prisma/singleton";
 import { main } from "@/app/api/post/route";
+import { revalidateTag } from "next/cache";
 
 async function addNew(data: FormData) {
   "use server";
@@ -17,7 +18,7 @@ async function addNew(data: FormData) {
     await main();
 
     await prisma.post.create({ data: { title, description } });
-
+    /*  revalidateTag("posts"); */
     redirect("/");
   }
 }
