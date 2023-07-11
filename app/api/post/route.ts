@@ -13,7 +13,7 @@ export async function main() {
   }
 }
 
-export const GET = async () => {
+export const GET = async (req: Request, res: NextResponse) => {
   try {
     await main();
     const posts = await prisma.post.findMany();
@@ -29,16 +29,10 @@ export const GET = async () => {
   }
 };
 
-export const POST = async (req: Request) => {
+export const POST = async (req: Request, res: NextResponse) => {
   try {
     const { title, description } = await req.json();
     await main();
-    /*  const post = {
-      title,
-      description,
-      id: Date.now().toString(),
-      date: new Date(),
-    }; */
 
     const post = await prisma.post.create({ data: { title, description } });
 

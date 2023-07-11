@@ -6,9 +6,9 @@ export async function fetchPosts() {
   "use server";
   /*  try {
     const res = await fetch("http://localhost:3000/api/post", {
-      // next: { revalidate: 10 }, 
+      // next: { revalidate: 10 },
       cache: "no-cache",
-      // next: { tags: ["posts"] }, 
+      // next: { tags: ["posts"] },
     });
 
     const data = await res.json();

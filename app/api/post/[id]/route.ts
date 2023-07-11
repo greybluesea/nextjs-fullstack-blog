@@ -2,11 +2,11 @@ import { NextResponse } from "next/server";
 import { main } from "../route";
 import prisma from "@/prisma/singleton";
 
-export const GET = async (req: Request) => {
+export const GET = async (req: Request, res: NextResponse) => {
   try {
     const id = req.url.split("post/")[1];
     await main();
-    const post = await prisma.post.findFirst({ where: { id } });
+    const post = await prisma.post.findFirst({ where: { id: id } });
     /* const post = getPost(id); */
     if (!post) {
       return NextResponse.json(
@@ -27,6 +27,7 @@ export const GET = async (req: Request) => {
 
 export const PUT = async (
   req: Request,
+  res: NextResponse,
   {
     params: { id },
   }: {
@@ -55,11 +56,11 @@ export const PUT = async (
   }
 };
 
-export const DELETE = async (req: Request) => {
+export const DELETE = async (req: Request, res: NextResponse) => {
   try {
     const id = req.url.split("post/")[1];
     await main();
-    const deletedPost = await prisma.post.delete({ where: { id } });
+    const deletedPost = await prisma.post.delete({ where: { id: id } });
     /*   deletePost(id); */
     return NextResponse.json(
       { message: "Success, post deleted", id },
