@@ -1,5 +1,5 @@
 import { addPost, getAll } from "@/lib/unused/data";
-import { prisma } from "@/prisma/singleton";
+import prisma from "@/prisma/singleton";
 import { NextResponse } from "next/server";
 
 export async function main() {

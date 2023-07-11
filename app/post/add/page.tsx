@@ -1,6 +1,6 @@
 import React from "react";
 import { redirect } from "next/navigation";
-import { prisma } from "@/prisma/singleton";
+import prisma from "@/prisma/singleton";
 import { main } from "@/app/api/post/route";
 import { revalidateTag } from "next/cache";
 

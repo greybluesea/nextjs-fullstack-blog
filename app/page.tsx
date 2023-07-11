@@ -1,25 +1,10 @@
 import Link from "next/link";
-
 import Post from "./components/Post";
-
-async function fetchPosts() {
-  try {
-    const res = await fetch("http://localhost:3000/api/post", {
-      /*  next: { revalidate: 10 }, */ cache: "no-cache",
-      next: { tags: ["posts"] },
-    });
-
-    const data = await res.json();
-
-    return data.posts;
-  } catch (err) {
-    console.log(err);
-  }
-}
+import { fetchPosts } from "@/lib/utils";
 
 export default async function Home() {
   const posts: Post[] = (await fetchPosts()) || [];
-  console.log(posts);
+
   return (
     <main className="w-full   ">
       <section id="addPostBtn" className="flex w-3/4 max-w-4xl m-auto">
