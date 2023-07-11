@@ -6,7 +6,7 @@ export const GET = async (req: Request, res: NextResponse) => {
   try {
     const id = req.url.split("post/")[1];
     await main();
-    const post = await prisma.post.findFirst({ where: { id: id } });
+    const post = await prisma.post.findFirst({ where: { id } });
     /* const post = getPost(id); */
     if (!post) {
       return NextResponse.json(
@@ -60,7 +60,7 @@ export const DELETE = async (req: Request, res: NextResponse) => {
   try {
     const id = req.url.split("post/")[1];
     await main();
-    const deletedPost = await prisma.post.delete({ where: { id: id } });
+    const deletedPost = await prisma.post.delete({ where: { id } });
     /*   deletePost(id); */
     return NextResponse.json(
       { message: "Success, post deleted", id },
