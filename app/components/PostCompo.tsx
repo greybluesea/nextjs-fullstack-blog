@@ -1,11 +1,11 @@
 import Link from "next/link";
 import React from "react";
-
+import { Post } from "@prisma/client";
 type Props = {
   post: Post;
 };
 
-const Post = ({ post }: Props) => {
+const PostCompo = ({ post }: Props) => {
   return (
     <div className="w-3/4 py-6 px-9 max-w-4xl rounded-md mx-auto my-3 bg-slate-700 text-slate-300 ">
       <section
@@ -30,4 +30,4 @@ const Post = ({ post }: Props) => {
   );
 };
 
-export default Post;
+export default PostCompo;

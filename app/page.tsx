@@ -1,6 +1,7 @@
 import Link from "next/link";
-import Post from "./components/Post";
+import PostCompo from "./components/PostCompo";
 import { fetchPosts } from "@/lib/utils";
+import { Post } from "@prisma/client";
 
 export default async function Home() {
   const posts: Post[] = (await fetchPosts()) || [];
@@ -24,7 +25,7 @@ export default async function Home() {
         className="w-full felx flex-col justify-center items-center mb-6"
       >
         {posts?.map((post: Post) => (
-          <Post key={post.id} post={post} />
+          <PostCompo key={post.id} post={post} />
         ))}
       </section>
     </main>
