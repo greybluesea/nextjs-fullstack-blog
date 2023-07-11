@@ -73,7 +73,8 @@ const EditPostPage = ({ params: { id } }: { params: { id: string } }) => {
 
     setTimeout(() => {
       router.push("/");
-    }, 6000);
+      router.refresh();
+    }, 5000);
   };
 
   const handleDelete = async (e: React.FormEvent) => {
@@ -83,9 +84,11 @@ const EditPostPage = ({ params: { id } }: { params: { id: string } }) => {
       success: <b>Post Deleted</b>,
       error: <b>Could not Delete.</b>,
     });
+
     setTimeout(() => {
       router.push("/");
-    }, 6000);
+      router.refresh();
+    }, 5000);
   };
 
   return (
@@ -136,11 +139,11 @@ const EditPostPage = ({ params: { id } }: { params: { id: string } }) => {
           <span className="text-slate-200">client component</span>, to utilise
           Rest API.
         </li>
-        <li>
+        {/* <li>
           After submission and re-directed to Homepage automatically, a few
           seconds' wait and <span className="text-slate-200">reload</span> of
           page is needed to see the new post.
-        </li>
+        </li> */}
       </ul>
     </>
   );

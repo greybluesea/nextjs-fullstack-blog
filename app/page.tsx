@@ -4,7 +4,7 @@ import Post from "./components/Post";
 
 async function fetchPosts() {
   const res = await fetch("http://localhost:3000/api/post", {
-    next: { revalidate: 10 },
+    /*  next: { revalidate: 10 }, */ cache: "no-cache",
   });
 
   const data = await res.json();
@@ -18,7 +18,8 @@ export default async function Home() {
     <main className="w-full   ">
       <section id="addPostBtn" className="flex w-3/4 max-w-4xl m-auto">
         <p className="text-slate-500 mt-2">
-          This Homepage is rendered as static page via SSG
+          This Homepage is rendered as{" "}
+          <span className="text-slate-300">static page</span> via SSG
         </p>
         <Link
           href={"/post/add"}

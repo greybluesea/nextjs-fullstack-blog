@@ -54,11 +54,11 @@ const AddPostPage = () => {
           <span className="text-slate-200">server component</span>, using server
           actions.
         </li>
-        <li>
+        {/* <li>
           After submission and re-directed to Homepage automatically, a few
           seconds' wait and <span className="text-slate-200">reload</span> of
           page may be needed to see the new post.
-        </li>
+        </li> */}
       </ul>
     </>
   );
